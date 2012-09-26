@@ -46,23 +46,23 @@
 					<img src="images/nodedublin.png"/>
 				</section>
 				<section>
-					<h2>Growing Turtles In Brown Fields</h2>
+					<h2>Node in the Microsoft Apps that you have already have</h2>
 					<img src="images/TurtleField.jpg"/>
-					<p>(Node in the Microsoft Apps that you have already have)</p>
+					
 				</section>
-				<!--
 				<section>
-					<h2></h2>
+					<h2>Why?</h2>
 					<ul>
-						
+						<li>Adoption in enterprise seems slow</li>
+						<img src="images/enterprise-adoption.png" width="650" height="600" />
 					</ul>
 					<!--<ol>
 						<li>What are people doing today?</li>
 						<li>A dive the anatomy of a node.js integrations</li>
 						<img src="images/turlat.gif" />
-					</ol>
+					</ol>-->
 				</section>
-				-->
+				
 				<section>
 					<h3>finding a problem definition</h3>
 					    
@@ -77,11 +77,11 @@
 							<li>IPC through Consoles (Yes Consoles)
 							<br /><small><a href="https://gist.github.com/1390198">https://gist.github.com/1390198</a></small>
 							</li>
-							<li>WCF/Soap Integration
+							<li>WCF/Soap Clients
 								<br /><small><a href="https://github.com/yaronn/wcf.js">https://github.com/yaronn/wcf.js</a></small>
 <small><a href="http://javascriptsoapclient.codeplex.com/">http://javascriptsoapclient.codeplex.com/</a></small>
 							</li>
-							<li>Node Web Sockets and MVC <b style="color:#FF0000">&lt;-We are here!</b>
+							<li>Web Sockets and MVC <b style="color:#FF0000">&lt;-We are here!</b>
 							<small><a href="http://sweettam.blogspot.in/2012/06/hybrid-application-using-aspnet-mvc3.html?m=1">http://sweettam.blogspot.in/2012/06/hybrid-application-using-aspnet-mvc3.html?m=1</a></small>
 							<small><a href="https://github.com/WindowsAzure-Samples/TanksterCommand">https://github.com/WindowsAzure-Samples/TanksterCommand</a></small>
 							
@@ -95,7 +95,7 @@
 				<!-- Example of nested vertical slides -->
 				
 					<section>
-						<h3>Typical Sample Apps With Node.js and MVC</h3>
+						<h3>Sample Apps With Node.js and MVC</h3>
 						
 						<img src="images/typicalsamplelayout.png" />
 						
@@ -116,21 +116,25 @@
 				<section>
 					<h3>2 Tier Approach - sqlcdc </h3>
 					<img src="images/sqlcdc.png" />
+					<small><a href="https://github.com/No9/sqlcdc">https://github.com/No9/sqlcdc</a></small>		
+					
 					
 				</section>
 
-				<section>
-					<h3>Inside SQL Server</h3>
-					<a href="http://msdn.microsoft.com/en-us/library/cc645937(v=sql.105).aspx">
-					<img src="images/mscdc.gif" />
-					</a>
-			</section>
+				
 
 				<section>
 					<h2>sqlcdc Component Layout</h2>
 					<img src="images/sqlcdccomponents.png" />
 				</section>
 				
+				<section>
+					<h3>Inside SQL Server</h3>
+					<a href="http://msdn.microsoft.com/en-us/library/cc645937(v=sql.105).aspx">
+					<img src="images/mscdc.gif" />
+					</a>
+			</section>
+			
 				<section>
 					<h3>SQL CDC Demo</h3>
 					<ul><li>Based on Movies MVC HowTo</li>
@@ -143,21 +147,50 @@
 					<ul>
 						<li>Lag Due To Polling SQL Server</li>
 						<li>Additional Strain On Database Server</li>
-						<li>Only Captures Database Events Not Business Events</li>
+						<li>Only Captures Database Events</li>
+						<li>Convincing DBA may be "problematic"</li>
+						
+						<img src="images/qm.png" />
+						<li>How realistic a scenario is it?</li>
 					</ul>
 				</section>
 				<section>
-					<h3>Enter the N-Tier</h3>
-					<img src="images/ntier.png" />
+					<h3>Round 2 - Enter the N-Tier</h3>
+					<img src="images/ntier.png" width="552" height="700" />
 				</section>
 				<section>
 					<h3>N-Tier with Node.js</h3>
-					<img src="images/ntierandnode.png" />
+					<img src="images/ntierandnode.png" width="552" height="700" />
 				</section>
 				
 				<section>
-					<h3>Harmon Implementation Detail</h3>
-					<img src="images/Harmon.png" />
+					<h3>HTTP-Proxy Implementation Detail</h3>
+					
+					<pre><code contenteditable>
+var actions = [];
+var simpleaction = {};
+// Identify the element that you wish to assign an event to
+// e.g. &lt;GetDataResult&gt;Some Text&lt;GetDataResult&gt;
+simpleaction.query = 'GetDataResult';
+
+// Create a function that executes when that node is selected. 
+// Here we just emit an event into redis 
+simpleaction.func = function (node) {
+	node.html(function (html) {
+		//html contains "Some Text"
+		announce.emit( 'cdcevent', { "item" : html } );
+		return;
+	});
+	return;
+};
+					 
+// Add the action to the action array
+actions.push(simpleaction);
+
+var harmon = require('harmon').harmon(actions) 
+var proxyoptions = { router: 'table.json' };
+require('./lib/appproxy.js').generate(proxyoptions, harmon);
+	</code></pre>
 				</section>
 				
 				<section>
@@ -170,13 +203,32 @@
 				<section>
 					<h3>Summary</h3>
 					<ul>
+						<li>N-Tier Streamed and Evented XML parsing works!</li>
+						<br/>
 						<li>There is more than just a stove pipe approach to integrating .Net with Node.js</li>
-						<li>These are NOT intended to be receipes but ideas on approaches.</li>
+						<br/>
+						<li>These are NOT intended to be a  meals but recipe ideas for you to enhance</li>
 					</ul>
+					
+					
 				</section>
+				<section>
+				<h3>Thanks</h3>
+					<ul>
+						<li><img src="images/angry_unicorn.png" width="60" height="60" /> @dshaw - Announce (Redis and sockets)</li>
+						<li><img src="images/laptop-robot_reasonably_small.jpg" width="60" height="60" /> @substack - trumpet</li>
+						<li><img src="images/avatard_reasonably_small.jpg" width="60" height="60" /> @jesusabdullah - feedback on harmon</li>
+						<li><img src="images/gravatar_reasonably_small.jpeg" width="60" height="60" /> @dominictarr - making sense of test frameworks</li>
+					</ul>
+					<br/>
 				
-				
-				
+				</section>
+				<section>
+					<h3>Don't forget Node Dublin @ the Guinness Store House</h3>
+					<!--<img src="images/logo.png"/>-->
+					<img src="images/nodedublin.png"/>
+					<h3>www.nodedublin.com</h3>
+				</section>
 <!--
 				<section data-markdown>
 					## Markdown support
