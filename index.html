@@ -53,7 +53,6 @@
 				<section>
 					<h2>Why?</h2>
 					<ul>
-						<li>Adoption in enterprise seems slow</li>
 						<img src="images/enterprise-adoption.png" width="650" height="600" />
 					</ul>
 					<!--<ol>
@@ -115,12 +114,17 @@
 
 				<section>
 					<h3>2 Tier Approach - sqlcdc </h3>
-					<img src="images/sqlcdc.png" />
+<img src="images/sqlcdc.png" />
+							<br/>
 					<small><a href="https://github.com/No9/sqlcdc">https://github.com/No9/sqlcdc</a></small>		
-					
-					
 				</section>
 
+				<section>
+					<h3>Inside SQL Server</h3>
+					<a href="http://msdn.microsoft.com/en-us/library/cc645937(v=sql.105).aspx">
+					<img src="images/mscdc.gif" />
+					</a>
+			</section>
 				
 
 				<section>
@@ -128,12 +132,6 @@
 					<img src="images/sqlcdccomponents.png" />
 				</section>
 				
-				<section>
-					<h3>Inside SQL Server</h3>
-					<a href="http://msdn.microsoft.com/en-us/library/cc645937(v=sql.105).aspx">
-					<img src="images/mscdc.gif" />
-					</a>
-			</section>
 			
 				<section>
 					<h3>SQL CDC Demo</h3>
@@ -186,7 +184,8 @@ simpleaction.func = function (node) {
 					 
 // Add the action to the action array
 actions.push(simpleaction);
-
+// Harmon and Trumpet are the key enablers for this approach
+// http://www.github.com/no9/harmon It's in NPM and Travis CI
 var harmon = require('harmon').harmon(actions) 
 var proxyoptions = { router: 'table.json' };
 require('./lib/appproxy.js').generate(proxyoptions, harmon);
@@ -207,7 +206,7 @@ require('./lib/appproxy.js').generate(proxyoptions, harmon);
 						<br/>
 						<li>There is more than just a stove pipe approach to integrating .Net with Node.js</li>
 						<br/>
-						<li>These are NOT intended to be a  meals but recipe ideas for you to enhance</li>
+						<li>These are NOT intended to be a  meals but recipe ideas</li>
 					</ul>
 					
 					
